@@ -18,6 +18,7 @@ public class SixMinuteDroid extends Activity {
 	private Button txtname;
 	private DigitalClock clock;
 	private TextView timer;
+	private Button resetbutton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,38 +29,60 @@ public class SixMinuteDroid extends Activity {
         timer.setTextSize(120);
         //txtname.setText("Your Mom");
         btnclickme = (Button) findViewById(R.id.Start);
+        resetbutton = (Button) findViewById(R.id.Reset);
         //Clock thing = new Clock();
+        final workout working = new workout();
        btnclickme.setOnClickListener(new View.OnClickListener(){
+    	  boolean exercise =  true;
+    	   @Override
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+    		   if (exercise == true){
+    			   clock.addTextChangedListener(working);
+    			   exercise = false;
+    		   }else{
+    			   clock.removeTextChangedListener(working);
+    			   exercise = true;
+    		   }
+			
+		}
+	});
+       resetbutton.setOnClickListener(new View.OnClickListener() {
+		
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			clock.addTextChangedListener(new TextWatcher() {
-				int counter = 0;
-				@Override
-				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					timer.setText(Integer.toString(counter++));
-					if( counter < 360 && counter != 0){
-						if (counter % 45 == 0){
-							MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
-						    mp.start();
-						}
-					}
-				}
-				
-				@Override
-				public void beforeTextChanged(CharSequence s, int start, int count,
-						int after) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void afterTextChanged(Editable s) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+			working.resetcounter();
 		}
 	});
     }
+    final class workout implements TextWatcher{
+		private int counter = 0;
+		
+		private void resetcounter(){
+			counter = 0;
+		}
+		
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before, int count) {
+			timer.setText(Integer.toString(counter++));
+			if (counter % 45 == 0){
+					MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
+				    mp.start();
+				}
+		}
+		
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		@Override
+		public void afterTextChanged(Editable s) {
+			// TODO Auto-generated method stub
+			
+		}
+}
 }
