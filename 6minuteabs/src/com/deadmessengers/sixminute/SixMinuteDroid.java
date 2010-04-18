@@ -20,6 +20,7 @@ public class SixMinuteDroid extends Activity {
 	private TextView timer;
 	private Button resetbutton;
 	boolean exercise =  true;
+	//handles if the app neets to be reset or not. This is globalized to allow the even handles access
 	private boolean getexercisestatus(){
 	    	return exercise;
 	    }
@@ -34,18 +35,18 @@ public class SixMinuteDroid extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        txtname = (Button) findViewById(R.id.Start);
-        clock = (DigitalClock) findViewById(R.id.DigitalClock01);
-        timer = (TextView) findViewById(R.id.Timer);
-        timer.setTextSize(120);
-        //txtname.setText("Your Mom");
+        txtname = (Button) findViewById(R.id.Start);  // assigns the static reference to the view object to txtname
+        clock = (DigitalClock) findViewById(R.id.DigitalClock01); // assigns the static reference to the view object to DigitalClock01
+        timer = (TextView) findViewById(R.id.Timer); // assigns the static reference to the view object to Timer
+        timer.setTextSize(120);   //sets the timer text to 120 sq pixels
         btnclickme = (Button) findViewById(R.id.Start);
         resetbutton = (Button) findViewById(R.id.Reset);
-        //Clock thing = new Clock();
         final workout working = new workout();
         boolean exercise =  true;
-       btnclickme.setOnClickListener(new View.OnClickListener(){
-    	   @Override
+       btnclickme.setOnClickListener(new View.OnClickListener(){  
+    	   //enters inline class to act as the event listener this one is similar to the onchange JS event
+    	//this onclick adds a listener at the start of the workout and kills it if the exercise is done
+    	@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
     		   if (getexercisestatus() == true){
@@ -60,6 +61,7 @@ public class SixMinuteDroid extends Activity {
 	});
        resetbutton.setOnClickListener(new View.OnClickListener() {
 		
+    	   //the onclick handler for reset
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
@@ -87,20 +89,22 @@ public class SixMinuteDroid extends Activity {
 					MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
 				    mp.start();
 				}
+			//unloads the event listener and resets the app in the event that 6 minutes occurs
+			//unloading the handler effectivly stops the handler.
 			if (counter > 360){
 				resetcounter();
 				setexercisestatus(true);
 				clock.removeTextChangedListener(this);
 			}
 		}
-		
+		//unused from interface
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
 			// TODO Auto-generated method stub
 			
 		}
-		
+		//unused from interface
 		@Override
 		public void afterTextChanged(Editable s) {
 			// TODO Auto-generated method stub
