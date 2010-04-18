@@ -19,7 +19,14 @@ public class SixMinuteDroid extends Activity {
 	private DigitalClock clock;
 	private TextView timer;
 	private Button resetbutton;
-    @Override
+	boolean exercise =  true;
+	private boolean getexercisestatus(){
+	    	return exercise;
+	    }
+	private void setexercisestatus(boolean status){
+	    	exercise = status;
+	    }
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -32,17 +39,17 @@ public class SixMinuteDroid extends Activity {
         resetbutton = (Button) findViewById(R.id.Reset);
         //Clock thing = new Clock();
         final workout working = new workout();
+        boolean exercise =  true;
        btnclickme.setOnClickListener(new View.OnClickListener(){
-    	  boolean exercise =  true;
     	   @Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-    		   if (exercise == true){
+    		   if (getexercisestatus() == true){
     			   clock.addTextChangedListener(working);
-    			   exercise = false;
+    			   setexercisestatus(false);
     		   }else{
     			   clock.removeTextChangedListener(working);
-    			   exercise = true;
+    			   setexercisestatus(true);
     		   }
 			
 		}
@@ -70,6 +77,11 @@ public class SixMinuteDroid extends Activity {
 					MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
 				    mp.start();
 				}
+			if (counter > 360){
+				resetcounter();
+				setexercisestatus(true);
+				clock.removeTextChangedListener(this);
+			}
 		}
 		
 		@Override
