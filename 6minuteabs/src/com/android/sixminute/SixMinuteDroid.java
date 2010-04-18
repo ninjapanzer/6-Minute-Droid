@@ -1,6 +1,7 @@
 package com.android.sixminute;
 
 import android.app.Activity;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.test.mock.MockContext;
@@ -24,43 +25,25 @@ public class SixMinuteDroid extends Activity {
         txtname = (Button) findViewById(R.id.Start);
         clock = (DigitalClock) findViewById(R.id.DigitalClock01);
         timer = (TextView) findViewById(R.id.Timer);
+        timer.setTextSize(120);
         //txtname.setText("Your Mom");
         btnclickme = (Button) findViewById(R.id.Start);
-        Clock thing = new Clock();
+        //Clock thing = new Clock();
        btnclickme.setOnClickListener(new View.OnClickListener(){
 		@Override
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			//txtname.setText("No Your Mom");
-			//clock.setText("0.0.0");
-			txtname.setText(clock.getText());
-			CharSequence time = clock.getText();
-			time = time.subSequence(time.length()- 5, time.length()-3);
-			int sec = Integer.parseInt(time.toString());
-			final int secstart = sec;
-			
 			clock.addTextChangedListener(new TextWatcher() {
 				int counter = 0;
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					//CharSequence time = clock.getText();
-					//time = time.subSequence(time.length()- 5, time.length()-3);
-					//time = clock.getText();
-					//time = time.subSequence(time.length()- 5, time.length()-3);
-					//txtname.setText(time);
-					//timer.setHeight(50);
-					//timer.setWidth(50);
-					timer.setTextSize(80);
-					//int newtime = Integer.parseInt(time.toString()) - secstart;
-					//timer.setText(Integer.toString(newtime));
 					timer.setText(Integer.toString(counter++));
-					MockContext context = new MockContext();
-					if (counter == 5){
-						MediaPlayer mp = MediaPlayer.create(context, R.raw.pager5);
-					    mp.start();
+					if( counter < 360 && counter != 0){
+						if (counter % 45 == 0){
+							MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
+						    mp.start();
+						}
 					}
-					
-					
 				}
 				
 				@Override
@@ -76,7 +59,6 @@ public class SixMinuteDroid extends Activity {
 					
 				}
 			});
-			//txtname.setText("Who talks like that");
 		}
 	});
     }
