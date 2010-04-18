@@ -7,7 +7,12 @@ import java.util.Date;
 
 public final class Clock {
 	public static void main (String arg[]){
-		long count = 0, oldcount = 0;
+		long count = 0, oldcount = 0, ourSeconds, our;
+		int minutes = 0;
+		
+		
+		while (minutes < 6)
+		{
 		Date now = new Date();
 		
 		long start = now.getTime();
@@ -15,21 +20,29 @@ public final class Clock {
 		
 		startSeconds = (long) Math.floor((double)startSeconds);
 		
-		long ourSeconds, our;
-		
-		while(count < 60)
-		{
-			now = new Date();
-			our = now.getTime();
-			ourSeconds = our / 1000;
-			ourSeconds = (long) Math.floor((double)ourSeconds);
-			count = ourSeconds - startSeconds;
-			if(count != oldcount) 
+			while(count < 60)
 			{
-			System.out.println(count);
-			oldcount = count;
+				now = new Date();
+				our = now.getTime();
+				ourSeconds = our / 1000;
+				ourSeconds = (long) Math.floor((double)ourSeconds);
+				count = ourSeconds - startSeconds;
+				
+				if(count != oldcount) 
+				{
+					if (count > 9)
+					{
+						System.out.println(minutes + ":" + count);
+					}
+					else
+					{
+						System.out.println(minutes + ":0" + count);
+					}
+				oldcount = ourSeconds;
+				}
 			}
-			
+			count = 0;
+			minutes = minutes + 1;
 		}
 	}
 	public Clock(){
