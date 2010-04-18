@@ -3,12 +3,10 @@ package com.android.sixminute;
 import java.util.Date;
 
 
-
-
 public final class Clock {
 	public static void main (String arg[]){
 		long count = 0, oldcount = 0, ourSeconds, our;
-		int minutes = 0;
+		int minutes = 0, rep=0;
 		
 		
 		while (minutes < 6)
@@ -27,7 +25,7 @@ public final class Clock {
 				ourSeconds = our / 1000;
 				ourSeconds = (long) Math.floor((double)ourSeconds);
 				count = ourSeconds - startSeconds;
-				
+				rep = rep + 1;
 				if(count != oldcount) 
 				{
 					if (count > 9)
@@ -40,6 +38,12 @@ public final class Clock {
 					}
 				oldcount = ourSeconds;
 				}
+				
+				if(rep == 45)
+				{
+					//play sound
+					rep = 0;
+				}
 			}
 			count = 0;
 			minutes = minutes + 1;
@@ -48,12 +52,4 @@ public final class Clock {
 	public Clock(){
 		
 	}
-
-
-
-
-
-
-
-
 }
