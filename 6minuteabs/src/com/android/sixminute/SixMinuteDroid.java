@@ -31,18 +31,26 @@ public class SixMinuteDroid extends Activity {
 			//txtname.setText("No Your Mom");
 			//clock.setText("0.0.0");
 			txtname.setText(clock.getText());
+			CharSequence time = clock.getText();
+			time = time.subSequence(time.length()- 5, time.length()-3);
+			int sec = Integer.parseInt(time.toString());
+			final int secstart = sec;
+			
 			clock.addTextChangedListener(new TextWatcher() {
-				
+				int counter = 0;
 				@Override
 				public void onTextChanged(CharSequence s, int start, int before, int count) {
-					
-					CharSequence time = clock.getText();
-					time = time.subSequence(time.length()- 5, time.length()-3);
+					//CharSequence time = clock.getText();
+					//time = time.subSequence(time.length()- 5, time.length()-3);
+					//time = clock.getText();
+					//time = time.subSequence(time.length()- 5, time.length()-3);
 					//txtname.setText(time);
 					//timer.setHeight(50);
 					//timer.setWidth(50);
 					timer.setTextSize(80);
-					timer.setText(time);
+					//int newtime = Integer.parseInt(time.toString()) - secstart;
+					//timer.setText(Integer.toString(newtime));
+					timer.setText(Integer.toString(counter++));
 					
 					
 				}
