@@ -49,7 +49,4 @@ public final class Clock {
 			minutes = minutes + 1;
 		}
 	}
-	public Clock(){
-		
-	}
 }

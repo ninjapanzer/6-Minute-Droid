@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/hello"
-    />
-</LinearLayout>
+
+
+
+
+<AbsoluteLayout android:id="@+id/AbsoluteLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+<Button android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_y="335dip" android:id="@+id/Start" android:clickable="true" android:cursorVisible="true" android:text="Snoochy Boochy" android:layout_x="100dip"></Button>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_x="163dip" android:layout_y="142dip" android:text="Your Mom" android:id="@+id/Mom"></TextView>
+
+
+
+<DigitalClock android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_x="93dip" android:layout_y="230dip" android:id="@+id/DigitalClock01" android:text="@+id/DigitalClock01" android:visibility="gone"></DigitalClock>
+<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_x="117dip" android:layout_y="77dip" android:id="@+id/Timer" android:text="00"></TextView>
+</AbsoluteLayout>

@@ -1,7 +1,9 @@
 package com.android.sixminute;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.test.mock.MockContext;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -24,6 +26,7 @@ public class SixMinuteDroid extends Activity {
         timer = (TextView) findViewById(R.id.Timer);
         //txtname.setText("Your Mom");
         btnclickme = (Button) findViewById(R.id.Start);
+        Clock thing = new Clock();
        btnclickme.setOnClickListener(new View.OnClickListener(){
 		@Override
 		public void onClick(View v) {
@@ -51,6 +54,11 @@ public class SixMinuteDroid extends Activity {
 					//int newtime = Integer.parseInt(time.toString()) - secstart;
 					//timer.setText(Integer.toString(newtime));
 					timer.setText(Integer.toString(counter++));
+					MockContext context = new MockContext();
+					if (counter == 5){
+						MediaPlayer mp = MediaPlayer.create(context, R.raw.pager5);
+					    mp.start();
+					}
 					
 					
 				}
