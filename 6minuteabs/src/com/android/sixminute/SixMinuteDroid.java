@@ -27,6 +27,10 @@ public class SixMinuteDroid extends Activity {
 	    	exercise = status;
 	    }
 	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState){
+		
+	}
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -66,6 +70,12 @@ public class SixMinuteDroid extends Activity {
     final class workout implements TextWatcher{
 		private int counter = 0;
 		
+		private int getcounter(){
+			return counter;
+		}
+		private void setcounter(int number){
+			counter = number;
+		}
 		private void resetcounter(){
 			counter = 0;
 		}
