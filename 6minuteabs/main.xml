@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+
+<AbsoluteLayout android:id="@+id/AbsoluteLayout01" android:layout_width="fill_parent" android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+<Button android:layout_height="wrap_content" android:layout_y="335dip" android:id="@+id/Start" android:clickable="true" android:cursorVisible="true" android:text="Exercise" android:layout_x="0dip" android:layout_width="fill_parent"></Button>
+
+
+
+
+<DigitalClock android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_x="93dip" android:layout_y="230dip" android:id="@+id/DigitalClock01" android:text="@+id/DigitalClock01" android:visibility="gone"></DigitalClock>
+<TextView android:id="@+id/Timer" android:text="0" android:layout_y="100dip" android:layout_x="100dip" android:layout_height="wrap_content" android:layout_width="wrap_content"></TextView>
+<TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_y="34dip" android:id="@+id/Banner" android:text="Six Minute Abs Timer" android:layout_x="90dip"></TextView>
+<Button android:id="@+id/Reset" android:text="Reset" android:layout_height="wrap_content" android:layout_width="fill_parent" android:layout_y="380dip" android:layout_x="0dip"></Button>
+</AbsoluteLayout>

@@ -1,10 +1,8 @@
 package com.deadmessengers.sixminute;
 
 import android.app.Activity;
-import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.test.mock.MockContext;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -18,8 +16,9 @@ public class SixMinuteDroid extends Activity {
 	private Button txtname;
 	private DigitalClock clock;
 	private TextView timer;
+	private TextView Banner;
 	private Button resetbutton;
-	boolean exercise =  true;
+	boolean exercise =  true; 
 	//handles if the app neets to be reset or not. This is globalized to allow the even handles access
 	private boolean getexercisestatus(){
 	    	return exercise;
@@ -39,6 +38,9 @@ public class SixMinuteDroid extends Activity {
         clock = (DigitalClock) findViewById(R.id.DigitalClock01); // assigns the static reference to the view object to DigitalClock01
         timer = (TextView) findViewById(R.id.Timer); // assigns the static reference to the view object to Timer
         timer.setTextSize(120);   //sets the timer text to 120 sq pixels
+        Banner = (TextView) findViewById(R.id.Banner);
+        Banner.setTextSize(25);
+        
         btnclickme = (Button) findViewById(R.id.Start);
         resetbutton = (Button) findViewById(R.id.Reset);
         final workout working = new workout();
@@ -51,10 +53,12 @@ public class SixMinuteDroid extends Activity {
 			// TODO Auto-generated method stub
     		   if (getexercisestatus() == true){
     			   clock.addTextChangedListener(working);
+    			   btnclickme.setText("Pause");
     			   setexercisestatus(false);
     		   }else{
     			   clock.removeTextChangedListener(working);
     			   setexercisestatus(true);
+    			   btnclickme.setText("Exercise");
     		   }
 			
 		}
@@ -66,6 +70,7 @@ public class SixMinuteDroid extends Activity {
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			working.resetcounter();
+			timer.setText(Integer.toString(working.getcounter()));
 		}
 	});
     }
@@ -85,7 +90,8 @@ public class SixMinuteDroid extends Activity {
 		@Override
 		public void onTextChanged(CharSequence s, int start, int before, int count) {
 			timer.setText(Integer.toString(counter++));
-			if (counter % 45 == 0){
+	    	
+	    	if (counter % 45 == 0){
 					MediaPlayer mp = MediaPlayer.create(getBaseContext(), R.raw.pager5);
 				    mp.start();
 				}
